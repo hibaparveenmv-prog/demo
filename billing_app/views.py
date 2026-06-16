@@ -5,8 +5,13 @@ from decimal import Decimal, InvalidOperation
 
 @login_required
 def dashboard(request):
-    Products = Product.objects.all()
-    return render(request,'dashboard.html', {'products': Products})
+    products = Product.objects.all()
+    recent_bills = Bill.objects.order_by('-created_at')[:5]
+    return render(request, 'dashboard.html', {
+        'products': products,
+        'recent_bills': recent_bills,
+    })
+
 @login_required
 def create_bill(request):
     products = Product.objects.all()
