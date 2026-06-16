@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <h2>Products</h2>
+        <a href="/create/" class="btn">Create Bill</a>
+
+        {% if recent_bills %}
+            <div class="recent-bills">
+                <h3>Recent Bills</h3>
+                <ul class="bill-list">
+                    {% for bill in recent_bills %}
+                        <li class="bill-item">
+                            <span><strong>#{{ bill.id }}</strong> {{ bill.customer_name }} — ₹{{ bill.final_amount|floatformat:2 }}</span>
+                            <span>
+                                <a href="{% url 'invoice' bill.id %}" class="btn">View</a>
+                                <a href="{% url 'invoice' bill.id %}" class="btn" onclick="event.preventDefault(); window.open(this.href); window.print();">Print</a>
+                            </span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <ul class="product-list">
+            {% for product in products %}
+                <li class="product-item">
+                    <span class="product-name">{{ product.name }}</span> - 
+                    <span class="product-price">₹ {{ product.price}}</span> - 
+                    <span class="product-stock">Stock: {{ product.stock}}</span>
+                </li>
+            {% endfor %}  
+        </ul>
+    </div>
+</html>

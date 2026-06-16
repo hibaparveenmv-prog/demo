@@ -1,0 +1,27 @@
+{% load static %}
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="dashboard-container login-container">
+        <div class="logo" style="text-align:center; margin-bottom: 24px;">
+            <img src="{% static 'images/logo.png' %}" alt="LOGO" style="max-width: 80px; display:block; margin:0 auto 10px auto;">
+            <h3 style="margin:0;">HB Billing System</h3>
+        </div>
+        <form method="POST" class="login-form">
+            {% csrf_token %}
+            <label for="id_username">Username</label>
+            {{ form.username }}
+            <label for="id_password">Password</label>
+            {{ form.password }}
+            <button type="submit" class="btn" style="width:100%;margin-top:18px;">Login</button>
+        </form>
+    </div>
+</body>
+</html>
