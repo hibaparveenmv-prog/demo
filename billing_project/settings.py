@@ -105,6 +105,17 @@ USE_TZ = True
 
 
 STATIC_URL = 'static/'
+
+import os
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'replace-this-with-a-secure-key')
+DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
+ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    ".vercel.app",
+]
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '127.0.0.1 localhost').split()
 STATICFILES_DIRS = [BASE_DIR / 'billing_app' / 'static']
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
