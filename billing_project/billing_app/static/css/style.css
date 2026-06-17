@@ -1,0 +1,301 @@
+/* Logo image styling for login and other pages */
+.logo img {
+    max-width: 100px;
+    height: auto;
+    display: block;
+    margin: 0 auto 16px auto;
+    border-radius: 50%;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    background: linear-gradient(135deg, #e3f0ff 60%, #f7fafd 100%);
+    padding: 10px;
+    border: 2px solid #007bff;
+    transition: box-shadow 0.2s, border 0.2s;
+}
+.logo img:hover {
+    box-shadow: 0 8px 32px rgba(0,123,255,0.18);
+    border: 2.5px solid #0056b3;
+}
+/* Invoice page custom styles */
+.invoice-box {
+    max-width: 420px;
+    padding: 32px 32px 28px 32px;
+    margin-top: 60px;
+}
+.invoice-details {
+    margin-top: 32px;
+    font-size: 1.15em;
+    color: #222;
+    background: #f7fafd;
+    border-radius: 10px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    padding: 24px 22px 18px 22px;
+}
+.invoice-label {
+    font-weight: 600;
+    color: #1a237e;
+    min-width: 120px;
+    display: inline-block;
+}
+.invoice-value {
+    font-weight: 500;
+    color: #333;
+    margin-left: 8px;
+}
+.invoice-final {
+    margin-top: 18px;
+    font-size: 1.18em;
+    font-weight: bold;
+    color: #007bff;
+}
+/* Bill form custom styles */
+.bill-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #1a237e;
+    letter-spacing: 0.02em;
+}
+.bill-form input[type="text"],
+.bill-form input[type="number"],
+.bill-form select {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 18px;
+    border: 1px solid #b0bec5;
+    border-radius: 6px;
+    font-size: 1em;
+    background: #f7fafd;
+    transition: border 0.2s;
+}
+.bill-form input[type="text"]:focus,
+.bill-form input[type="number"]:focus,
+.bill-form select:focus {
+    border: 1.5px solid #007bff;
+    outline: none;
+    background: #fff;
+}
+.bill-form button.btn {
+    margin-top: 10px;
+    font-size: 1.1em;
+    padding: 12px 0;
+}
+body{
+    background-image: url('BILL.jpeg');
+    background-size: cover;
+    margin: 10px;
+    font-family: Arial, sans-serif;
+}
+h2{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #222;
+    font-size: 40px;
+    text-align: center;
+    margin-top: 30px;
+}
+.dashboard-container {
+    background: rgba(255,255,255,0.85);
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px 40px 40px 40px;
+    border-radius: 16px;
+    box-shadow:  0 4px 24px rgba(0,0,0,0.12);
+    
+}
+.btn {
+    display: inline-block;
+    background: #007bff;
+    color: #fff;
+    padding: 10px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 24px;
+    transition: background 0.2s;
+}
+.btn:hover {
+    background: #0056b3;
+}
+.product-list {
+    list-style: none;
+    padding: 0;
+}
+.product-item {
+    background: #f7f7f7;
+    margin-bottom: 12px;
+    padding: 14px 18px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.product-name {
+    font-weight: bold;
+    color: #333;
+}
+.product-price {
+    color: #28a745;
+    font-weight: bold;
+}
+.product-stock {
+    color: #888;
+    font-size: 0.95em;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .dashboard-container, .invoice-box {
+        margin: 20px auto;
+        padding: 20px;
+        max-width: 90%;
+    }
+
+    h2 {
+        font-size: 32px;
+        margin-top: 20px;
+    }
+
+    .bill-form input[type="text"],
+    .bill-form input[type="number"],
+    .bill-form select {
+        font-size: 0.9em;
+        padding: 8px 10px;
+    }
+
+    .bill-form button.btn {
+        padding: 10px 0;
+        font-size: 1em;
+    }
+
+    .product-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .product-price, .product-stock {
+        margin-top: 6px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    h2 {
+        font-size: 28px;
+    }
+
+    .invoice-details {
+        font-size: 1em;
+        padding: 18px 16px;
+    }
+
+    .invoice-label {
+        min-width: 100px;
+    }
+}
+
+/* Invoice table styling */
+.invoice-meta {
+    margin-bottom: 20px;
+    font-size: 1em;
+    color: #222;
+}
+
+.invoice-meta div {
+    margin: 4px 0;
+}
+
+.table-responsive {
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+.invoice-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+
+.invoice-table th,
+.invoice-table td {
+    border: 1px solid #ccc;
+    padding: 8px 10px;
+    text-align: left;
+    padding-left: 30px;
+}
+
+.invoice-table th {
+    background: #e3f0ff;
+    font-weight: bold;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.thankyou {
+    font-size: 24px;
+    font-style: italic;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.print-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.print-btn:hover {
+    background: #0056b3;
+}
+.si {
+    font-weight: bold;
+    color: #555;
+}
+
+@media print {
+    body {
+        background: #fff !important;
+        margin: 0 !important;
+    }
+
+    .dashboard-container,
+    .invoice-box,
+    .invoice-meta,
+    .invoice-table,
+    .invoice-table th,
+    .invoice-table td,
+    .thankyou {
+        box-shadow: none !important;
+        background: transparent !important;
+        color: #000 !important;
+    }
+
+    .print-btn,
+    .btn,
+    .remove-product,
+    #add-product,
+    .bill-form button[type="submit"] {
+        display: none !important;
+    }
+
+    .invoice-table th,
+    .invoice-table td {
+        border-color: #000 !important;
+    }
+}
+
+
+
+         

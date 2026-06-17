@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="dashboard-container invoice-box">
+            <center>
+                <h1>INVOICE</h1>    
+            </center>
+
+        <div class="invoice-meta">
+            <div><strong>Date:</strong> {{ bill.created_at|date:"SHORT_DATE_FORMAT" }}</div>
+            <div><strong>Bill To:</strong> {{ bill.customer_name }}</div>
+            <div><strong>Invoice No:</strong> {{ bill.id }}</div>
+        </div>
+
+        <table class="invoice-table">
+            <thead>
+                <tr>
+                    <th>SI</th>
+                    <th>Product</th>
+                    <th>Qty</th>
+                    <th>Price (₹)</th>
+                    <th>GST (%)</th>
+                    <th>Line Total (₹)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in bill.billitem_set.all %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ item.product.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>₹{{ item.product.price|floatformat:2 }}</td>
+                    <td>{{ item.product.gst|floatformat:2 }}%</td>
+                    <td>₹{{ item.total_with_gst|floatformat:2 }}</td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="6">No items</td></tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5" class="text-right"><strong>Total</strong></td>
+                    <td>₹ {{ bill.total_amount|floatformat:2 }}</td>
+                </tr>
+                <tr>
+                    <td colspan="5" class="text-right"><strong>Discount</strong></td>
+                    <td>₹ {{ bill.discount_amount|floatformat:2 }}</td>
+                </tr>
+                <tr>
+                    <td colspan="5" class="text-right"><strong>Final Amount</strong></td>
+                    <td>₹ {{ bill.final_amount|floatformat:2 }}</td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div class="thankyou">Thank you!</div>
+        <button class="print-btn" onclick="window.print()">Print Invoice</button> 
+     </div> 
+
+</body>
+</html>
