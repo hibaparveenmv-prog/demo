@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BILL</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <h2>Create Bill</h2>
+        {% if error %}
+            <div class="error-message">{{ error }}</div>
+        {% endif %}
+        <form method="POST" class="bill-form">
+            {% csrf_token %}
+            <label for="customer">Customer Name:</label>
+            <input type="text" id="customer" name="customer" required><br><br>
+
+            <div id="product-rows">
+                <div class="product-row">
+                    <label>Product:</label>
+                    <select name="product" class="product-select" required>
+                        {% for product in products %}
+                            <option value="{{ product.id }}">{{ product.name }} - ₹{{ product.price }} (Stock: {{ product.stock }})</option>
+                        {% endfor %}
+                    </select><br><br>
+
+                    <label>Quantity:</label>
+                    <input type="number" name="quantity" class="quantity-input" min="1" value="1" required><br><br>
+                    <button type="button" class="remove-product">Remove</button>
+                </div>
+            </div>
+            <button type="button" class="btn" id="add-product">Add Another Product</button><br><br>
+            <label for="discount">Discount:</label>
+            <input type="number" id="discount" name="discount" value="0" min="0"><br><br>
+
+            <button type="submit" class="btn">Generate Bill</button>
+        </form>
+    </div>
+
+    <script>
+        const productRows = document.getElementById('product-rows');
+        const addProductButton = document.getElementById('add-product');
+
+        function updateRemoveButtons() {
+            const rows = productRows.querySelectorAll('.product-row');
+            rows.forEach((row) => {
+                const removeButton = row.querySelector('.remove-product');
+                removeButton.style.display = rows.length > 1 ? 'inline-block' : 'none';
+                removeButton.onclick = () => {
+                    row.remove();
+                    updateRemoveButtons();
+                };
+            });
+        }
+
+        addProductButton.addEventListener('click', () => {
+            const firstRow = productRows.querySelector('.product-row');
+            const newRow = firstRow.cloneNode(true);
+            newRow.querySelectorAll('select').forEach(select => select.selectedIndex = 0);
+            newRow.querySelectorAll('input').forEach(input => {
+                if (input.type === 'number') {
+                    input.value = '1';
+                } else {
+                    input.value = '';
+                }
+            });
+            productRows.appendChild(newRow);
+            updateRemoveButtons();
+        });
+
+        updateRemoveButtons();
+    </script>
+</body>
+</html>
